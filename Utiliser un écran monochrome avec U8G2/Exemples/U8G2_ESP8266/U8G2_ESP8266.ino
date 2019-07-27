@@ -1,0 +1,41 @@
+#include <Arduino.h>
+#include <U8g2lib.h>
+#include <Wire.h>
+
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(/* rotation=*/ U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
+
+void setup() {
+  
+    u8g2.begin();
+
+    u8g2.enableUTF8Print(); 
+
+    u8g2.setContrast(100);
+}
+
+void loop() {
+
+    u8g2.clearBuffer();
+    
+
+    u8g2.setFont(u8g2_font_10x20_tf);
+  
+    u8g2.drawBox(0, 0, 128, 20);
+
+    u8g2.setDrawColor(0);
+    u8g2.setCursor(45, 15);
+    u8g2.print("U8g2");
+    u8g2.setDrawColor(1);
+
+    u8g2.setCursor(8, 40); 
+    u8g2.print("ESP8266 12E");
+
+    u8g2.setCursor(30, 62); 
+    u8g2.print("SSD1306");
+    
+
+    u8g2.sendBuffer();
+    
+
+    delay(10000);
+}
